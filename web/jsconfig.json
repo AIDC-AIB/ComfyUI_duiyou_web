@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "/*": ["./*"]
+    },
+    "lib": ["DOM", "ES2022"],
+    "typeRoots": ["./types"]
+  },
+  "include": ["."]
+}

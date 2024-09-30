@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ComfyUI Main</title>
+    <script src="//dev.g.alicdn.com/code/npm/@ali/comfyui/0.1.1/comfyui-jssdk.js"></script>
+    <style>
+      html,
+      body {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        min-width: 1200px;
+        min-height: 700px;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .comfyui-title {
+        padding-inline: 6px;
+      }
+      .comfyui-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 16px;
+        padding-inline: 6px;
+      }
+      .comfyui-actions button {
+        appearance: none;
+        border: none;
+        background-color: black;
+        color: white;
+        margin: 0;
+        padding: 8px 16px;
+        font-size: 14px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        border-radius: 3px;
+      }
+      .comfyui-actions button:hover {
+        background-color: #444;
+      }
+
+      .comfyui-root {
+        flex: 1;
+        height: 100%;
+      }
+      .comfyui-root iframe {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="comfyui-title">ComfyUI Father</h1>
+    <div class="comfyui-actions">
+      <button onclick="setWorkflow()">setWorkflow()</button>
+      <button onclick="getWorkflow()">getWorkflow()</button>
+      <button onclick="runWorkflow()">runWorkflow()</button>
+      <button onclick="validateWorkflow()">validateWorkflow()</button>
+    </div>
+    <div class="comfyui-root"></div>
+  </body>
+
+  <script>
+    class ComfyUIMain extends comfyui.ComfyUIMainBase {
+      constructor(container, options) {
+        super(container, options);
+      }
+
+      async changeModel(currentModel) {
+        // 实现模型切换的逻辑
+        console.log('"changeModel" API called, current Model: ', currentModel);
+
+        return [
+          {
+            id: 'c1b6e4fc00b04ad2ade7c6a9fd95b352',
+            name: '万享XL_超写实摄影VB',
+            version: 'SD 1.5',
+          },
+          {
+            id: 'c1b6e4fc00b04ad2ade7c6a9fd95b352',
+            name: '梦与、产品包装摄影',
+            version: 'SD 1.5',
+          },
+        ][parseInt(Math.random() * 10) % 2];
+      }
+
+      async changeLora(currentLora) {
+        // 实现 LoRA 切换的逻辑
+        console.log('"changeLora" API called, current Lora: ', currentLora);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+        return {
+          id: 'xx',
+          name: 'lora-1' + (Math.random() * 100).toFixed(3),
+          version: 'v1.5',
+        };
+      }
+
+      // 其他 API 实现
+    }
+  </script>
+  <script>
+    const COMFYUI_CLIENT_TOKEN =
+      'y9hL4/By1s0DrQ/9z5LCNguENC/BMsnR0ukAWsutlzkRT3XHIdCoidsOe/Sge3trRKSYEaw8mt/v01HQJ75zVhAVqG6I702EDs6IPs1wORYnmMyEhSPKZdUAIqKbPe1Yv3zfXL6JTWjHWpEfSSnZTn/GbxuuujPhIhww42JdQKH0Nxp6IDx3u28q8EryNf/ahBttrK1npQuZ0s5xZCImH9/x7GzSy9+IogoANrsHdVmxpIaCJ/+sbM8rbagqsZk6qtXEUXI9g59dQujib19ITNtnDBJkSbZONtJs93Cyp1+VkCFWBzxcP/Pg/7jF8iyj';
+    const COMFYUI_CLIENT_ENV = 'daily';
+  </script>
+
+  <script>
+    const main = new ComfyUIMain(document.querySelector('.comfyui-root'), {
+      env: COMFYUI_CLIENT_ENV,
+      token: COMFYUI_CLIENT_TOKEN,
+    });
+
+    main.on('loaded', (data) => {
+      console.log('===>> [father.html] comfyui iframe loaded', data);
+    });
+    main.on('queueChanged', (event) => {
+      console.log('===>> [father.html] queueChanged', event);
+    });
+    main.on('executeStart', (event) => {
+      console.log('===>> [father.html] executeStart', event);
+    });
+    main.on('executeProgress', (event) => {
+      console.log('===>> [father.html] executeProgress', event);
+    });
+    main.on('executeComplete', (event) => {
+      console.log('===>> [father.html] executeComplete', event);
+    });
+    main.on('executeError', (event) => {
+      console.log('===>> [father.html] executeError', event);
+    });
+
+    const setWorkflow = () => {
+      let workflowData = prompt(
+        `请粘贴工作流JSON内容，参考ComfyUI原生数据结构:
+{
+  "last_node_id": 9,
+  "last_link_id": 9,
+  "nodes": [],
+  "links": [],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}`,
+      );
+
+      try {
+        workflowData = JSON.parse(workflowData);
+      } catch (error) {
+        workflowData = null;
+        alert('粘贴内容不是有效的JSON');
+      }
+      if (!workflowData) return;
+
+      main.setWorkflow({
+        id: Math.random().toString(36).substring(2),
+        data: workflowData,
+      });
+    };
+
+    const getWorkflow = async () => {
+      try {
+        const res = await main.getWorkflow();
+        console.log('===>> [father.html] getWorkflow result:', res);
+      } catch (error) {
+        console.error('===>> [father.html] getWorkflow error:', error);
+      }
+    };
+
+    const runWorkflow = async (promptId, nodeIds) => {
+      if (!promptId) {
+        promptId = prompt('请输入 promptId');
+      }
+      try {
+        await main.runWorkflow({ promptId, nodeIds });
+      } catch (error) {
+        console.error('===>> [father.html] runWorkflow error:', error);
+      }
+    };
+
+    const validateWorkflow = async () => {
+      try {
+        const res = await main.validateWorkflow();
+        console.log('===>> [father.html] validateWorkflow result:', res);
+        if (res.promptId) {
+          const isRunNow = confirm(`已校验通过，prompt_id为“${res.promptId}”，是否立即运行？`);
+          if (!isRunNow) return;
+          runWorkflow(res.promptId, res.nodeIds);
+        }
+      } catch (error) {
+        console.error('===>> [father.html] validateWorkflow error:', error);
+      }
+    };
+  </script>
+</html>

@@ -1,0 +1,15 @@
+dist/
+lib/
+esm/
+tests/
+demo/
+coverage/
+node_modules/
+**/*-min.js
+**/*.min.js
+LICENSE
+
+## lock file
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
