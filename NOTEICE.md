@@ -28,6 +28,7 @@ The following files were modified by us (the licensor):
 20. utils.js. Path: web/scripts/utils.js
 21. style.css. Path: web/style.css
 22. app.d.ts. Path: web/types/app.d.ts  
+
 License: https://github.com/comfyanonymous/ComfyUI/blob/master/LICENSE
 
 Additional Terms:
