@@ -2,8 +2,9 @@ This project is licensed under GNU GENERAL PUBLIC LICENSE Version 3 (https://www
 
 This project incorporates components from the Open Source Software below. 
 The original copyright notices and the licenses under which we received such components are set forth below for informational purposes. 
-ComfyUI
-GNU GENERAL PUBLIC LICENSE Version 3
+
+ComfyUI<br/>
+[GNU GENERAL PUBLIC LICENSE Version 3](https://www.gnu.org/licenses/gpl-3.0.html)
 
 The following files were modified by us (the licensor):
 1. CHECKLIST.md. Path: web/CHECKLIST.md
@@ -31,8 +32,8 @@ The following files were modified by us (the licensor):
 
 License: https://github.com/comfyanonymous/ComfyUI/blob/master/LICENSE
 
-Additional Terms:
-Any misrepresentation of the origin of the material that the licensor added to the ComfyUI project ("Material") is prohibited. If Material is modified, the modified version shall be marked in reasonable ways as different from the original version.
-Neither the name of the licensor nor the names of its contributors may be used for publicity purposes without specific prior written permission.
-No trademark licenses are granted, and in connection with Material, no licensee may use any name or mark owned by the licensor or associated with the other or any of its affiliates, except as required for reasonable and customary use in describing and redistributing Material.
+Additional Terms:<br/>
+Any misrepresentation of the origin of the material that the licensor added to the ComfyUI project ("Material") is prohibited. If Material is modified, the modified version shall be marked in reasonable ways as different from the original version.<br/>
+Neither the name of the licensor nor the names of its contributors may be used for publicity purposes without specific prior written permission.<br/>
+No trademark licenses are granted, and in connection with Material, no licensee may use any name or mark owned by the licensor or associated with the other or any of its affiliates, except as required for reasonable and customary use in describing and redistributing Material.<br/>
 If anyone conveys Material (or modified versions of it) with contractual assumptions of liability to the recipient, the licensor will not be liable for any liability that these contractual assumptions directly impose on those licensors and authors, and the conveyor shall indemnify the licensor for such liabilities.
