@@ -30,7 +30,7 @@ The following files were modified by us (the licensor):
 21. style.css. Path: web/style.css
 22. app.d.ts. Path: web/types/app.d.ts  
 
-License: https://github.com/comfyanonymous/ComfyUI/blob/master/LICENSE
+License: [https://github.com/comfyanonymous/ComfyUI/blob/master/LICENSE](https://github.com/comfyanonymous/ComfyUI/blob/master/LICENSE)
 
 Additional Terms:<br/>
 Any misrepresentation of the origin of the material that the licensor added to the ComfyUI project ("Material") is prohibited. If Material is modified, the modified version shall be marked in reasonable ways as different from the original version.<br/>
